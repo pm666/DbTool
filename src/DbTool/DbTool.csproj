@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>DbTool</RootNamespace>
+    <AssemblyName>DbTool</AssemblyName>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <ApplicationIcon>DbTool.ico</ApplicationIcon>
+    <DbToolPackageVersion>3.0.0</DbToolPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="out\**" />
+    <EmbeddedResource Remove="out\**" />
+    <None Remove="out\**" />
+    <Page Remove="out\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WeihanLi.Extensions.Localization.Json" Version="2.0.0" />
+    <PackageReference Include="WeihanLi.Common" Version="1.0.60" />
+    <PackageReference Include="WeihanLi.Npoi" Version="2.4.2" />
+    <PackageReference Include="DbTool.Core" Version="$(DbToolPackageVersion)" />
+    <PackageReference Include="DbTool.DbProvider.MySql" Version="$(DbToolPackageVersion)" />
+    <PackageReference Include="DbTool.DbProvider.PostgreSql" Version="$(DbToolPackageVersion)" />
+    <PackageReference Include="DbTool.DbProvider.SqlServer" Version="$(DbToolPackageVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DbTool.ControlLib\DbTool.ControlLib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Resources\**\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

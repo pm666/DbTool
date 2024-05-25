@@ -1,0 +1,29 @@
+schedules:
+- cron: 0 10 * * *
+  displayName: Build every day at 10:00 UTC
+  branches:
+    include:
+    - '*'
+
+trigger:
+  branches:
+    include:
+    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET SDK'
+  inputs:
+    packageType: sdk
+    version: 8.0.x
+    # includePreviewVersions: true
+
+- script: dotnet --info
+  displayName: "dotnet info"
+- script: dotnet restore
+  displayName: "dotnet restore"
+- script: dotnet build -c Release
+  displayName: "dotnet build"
